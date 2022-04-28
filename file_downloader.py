@@ -24,12 +24,12 @@ def dl(url:str):
         target = re.findall(f"https:\/\/static.wikia.nocookie.net\/gensin-impact\/images\/[a-zA-Z0-9]\/[a-zA-Z0-9][a-zA-Z0-9]\/{olf}\/revision\/latest",fp.read().decode("utf8"))
         fp.close()
     elif urlType(url) == 2:
-        target = re.findall(f"https:\/\/static.wikia.nocookie.net\/gensin-impact\/images\/[a-zA-Z0-9]\/[a-zA-Z0-9][a-zA-Z0-9]\/(.*)\/revision\/latest",url)
+        target = re.findall(f"https:\/\/static.wikia.nocookie.net\/(.*)\/images\/[a-zA-Z0-9]\/[a-zA-Z0-9][a-zA-Z0-9]\/(.*)\/revision\/latest",url)
         url = url.replace("/scale-to-width-down/", "?")
 
     if len(target) > 0:
         if (urlType(url) == 2):
-            file_name = target[0]
+            file_name = target[0][1]
         else:
             url = target[0]
             file_name = url.split('/')[-3]
@@ -48,7 +48,7 @@ def dl(url:str):
     return 0
 
 def urlType(url:str):
-    if len(re.findall(f"https:\/\/static.wikia.nocookie.net\/gensin-impact\/images\/[a-zA-Z0-9]\/[a-zA-Z0-9][a-zA-Z0-9]\/",url)):
+    if len(re.findall(f"https:\/\/static.wikia.nocookie.net\/(.*)\/images\/[a-zA-Z0-9]\/[a-zA-Z0-9][a-zA-Z0-9]\/",url)):
         return 2 #Direct File URL
     elif len(re.findall(f"https:\/\/genshin-impact.fandom.com\/",url)):
         return 1 #Wiki File URL
