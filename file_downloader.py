@@ -73,4 +73,14 @@ if __name__ == '__main__':
         for f in dl_list:
             dl(f)
     while(1):
-        dl(input("File Name: "))
+        inp = input("File Name: ")
+        if ".txt" in inp and os.path.isfile(f"./{inp}"):
+            rse = ""
+            with open(inp, 'r', encoding='utf-8') as infile:
+                for line in infile:
+                    rse = line
+            l = rse.replace("', '", "','").split(",")
+            for ll in l:
+                dl(ll.replace("'",""))
+        else:
+            dl(inp)
