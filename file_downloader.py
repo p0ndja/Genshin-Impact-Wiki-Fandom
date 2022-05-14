@@ -79,8 +79,8 @@ if __name__ == '__main__':
             with open(inp, 'r', encoding='utf-8') as infile:
                 for line in infile:
                     rse = line
-            l = rse.replace("', '", "','").split(",")
+            l = rse.replace("', '", "','").replace("\"", "'").split(",")
             for ll in l:
-                dl(ll.replace("'",""))
+                dl(ll.replace(".ogg '", ".ogg").replace("'VO","VO").replace(".ogg'",".ogg"))
         else:
             dl(inp)

@@ -42,4 +42,6 @@ for i in wikitext:
         if ".ogg" in find:
             finder.append(find.replace("{character}", character).replace("{language}", language).replace("_"," "))
 
-print(finder)
+f = list(set(finder))
+f.sort()
+print(f)
